@@ -125,9 +125,15 @@ class ViewController: UITableViewController {
             print(err)
             let alert = UIAlertController(title: "No Weather Data", message: "Weather data for the selected location is not found.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+            if self.weatherResponses.count > 0 && self.weatherResponses.count < self.cities.count {
+                self.cities.remove(at: self.weatherResponses.count)
+                self.tableView.reloadData()
+            }
         }
-        } )
+        })
     }
     func getIconImage(for iconID: String){
         weatherVModel.fetchWeatherData(for: weatherVModel.stringUrlForImage(forIconID: iconID), completion: {

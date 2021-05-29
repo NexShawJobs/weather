@@ -5,67 +5,24 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
          <BreakpointContent
-            uuid = "6D2BE6A0-44CF-475B-92B8-F1DB90031A26"
-            shouldBeEnabled = "No"
+            uuid = "11440A46-CC0F-43C1-9749-6CE7BA1B3D61"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "weathere/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "fetchWeatherData(for:completion:)"
-            landmarkType = "7">
+            continueAfterRunningActions = "No">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "3C7AC295-B3D2-4624-9D6E-16804801077D"
+            uuid = "0358072E-482E-4624-AB1E-BA6A895CD2D1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "weathere/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
-            landmarkName = "fetchWeatherData(for:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3C7AC295-B3D2-4624-9D6E-16804801077D - fdd5f0e4370b7722"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "weathere.WeatherViewModel.fetchWeatherData(for: Swift.String, completion: () -&gt; ()) -&gt; ()"
-                  moduleName = "weathere"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nebsha/Desktop/weathere/weathere/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "210"
-                  endingLineNumber = "210"
-                  offsetFromSymbolStart = "49">
-               </Location>
-               <Location
-                  uuid = "3C7AC295-B3D2-4624-9D6E-16804801077D - d7f9a507e1964a9c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Foundation.Data) -&gt; () in weathere.WeatherViewModel.fetchWeatherData(for: Swift.String, completion: () -&gt; ()) -&gt; ()"
-                  moduleName = "weathere"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nebsha/Desktop/weathere/weathere/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "211"
-                  endingLineNumber = "211"
-                  offsetFromSymbolStart = "69">
-               </Location>
-            </Locations>
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
