@@ -14,6 +14,8 @@ class ViewController: UITableViewController {
     var weatherIcons:[UIImage] = []
     var cities = ["Irving", "Houston", "Boston"]
     let numberOfItemsInWeather = 10
+    let heightForFooterSection = 29
+    let heightForHeaderSection = 60
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +44,15 @@ class ViewController: UITableViewController {
                 let weather:[Weather] = self.weatherResponses[indexPath.section].weather!
                 cell.textLabel?.text = "Main: " + weather[0].main!
             case 2:
-                let temp = self.weatherResponses[indexPath.section].main?.temp
-                cell.textLabel?.text = "Temprature :" + String(temp!)
+                let ktemp = (self.weatherResponses[indexPath.section].main?.temp)!
+                let celsiusTemp = ktemp - 273.15
+                cell.textLabel?.text = "Temprature :" + String(format: "%.2f \u{00B0}C", celsiusTemp) //+ "C"
             case 3:
                 let pressure = self.weatherResponses[indexPath.section].main?.pressure
                 cell.textLabel?.text = "Pressure :" + String(pressure!)
             case 4:
                 let humidity = self.weatherResponses[indexPath.section].main?.humidity
-                cell.textLabel?.text = "Pressure :" + String(humidity!)
+                cell.textLabel?.text = "Humidity :" + String(humidity!)
             case 5:
                 let minTemp = self.weatherResponses[indexPath.section].main?.temp_min
                 cell.textLabel?.text = "Min Temperature :" + String(minTemp!)
@@ -75,10 +78,10 @@ class ViewController: UITableViewController {
     return cell
     }
     override func tableView(_: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 29
+        return CGFloat(heightForFooterSection)
     }
     override func tableView(_: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return CGFloat(heightForHeaderSection)
     }
     override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 60))
