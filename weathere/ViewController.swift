@@ -133,7 +133,7 @@ class ViewController: UITableViewController {
 }
 //END VIEWCONTROLLER
 
-//VIEW MODEL
+//MODEL
 struct WeatherResponse : Decodable {
     let coord:Coord?
     let weather:[Weather]?
@@ -202,6 +202,9 @@ struct Icon {
     let icon:UIImage
     let urlString:String
 }
+//END MODEL
+
+//VIEW MODEL
 class WeatherViewModel {
     var services = Services()
     var weatherData:Data = Data()
@@ -222,8 +225,10 @@ class WeatherViewModel {
         return  services.stringUrlForWeatherData(forLocation: location)
     }
 }
+//END VIEW MODEL
+
+
 class Services: NSObject {
-    var cities = ["Irving", "Houston", "Plano"]
     static let baseURL = "http://api.openweathermap.org/data/2.5/weather?appid=b274c5ce65b3e435688f3098769c6dee&q="
     static let baseIconURL = "http://openweathermap.org/img/w/"
 
@@ -244,4 +249,3 @@ class Services: NSObject {
         return Services.baseURL + location
     }
 }
-//END VIEW MODEL
