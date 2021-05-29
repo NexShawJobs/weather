@@ -12,14 +12,17 @@ class ViewController: UITableViewController {
     var weatherVModel:WeatherViewModel = WeatherViewModel()
     var weatherResponses:[WeatherResponse] = []
     var weatherIcons:[UIImage] = []
-    var cities = ["Irving", "Houston", "Boston"]
+    var cities = ["Irving", "Houston", "Boston", "Dallas"]
     let numberOfItemsInWeather = 10
     let heightForFooterSection = 29
     let heightForHeaderSection = 60
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupView()
         self.loadDefaultWeatherData()
+    }
+    func setupView(){
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "WeatherIconCell", bundle: nil), forCellReuseIdentifier: "WeatherIconCell")
@@ -34,48 +37,7 @@ class ViewController: UITableViewController {
     }
     override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell",for: indexPath)
-        if self.weatherResponses.count > indexPath.section && self.weatherIcons.count > indexPath.section {
-            switch indexPath.row {
-            case 0:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherIconCell") as! WeatherIconCell
-                cell.weatherIconImageView.image = self.weatherIcons[indexPath.section]
-                return cell
-            case 1:
-                let weather:[Weather] = self.weatherResponses[indexPath.section].weather!
-                cell.textLabel?.text = "Main: " + weather[0].main!
-            case 2:
-                let ktemp = (self.weatherResponses[indexPath.section].main?.temp)!
-                let celsiusTemp = ktemp - 273.15
-                cell.textLabel?.text = "Temprature :" + String(format: "%.2f \u{00B0}C", celsiusTemp) //+ "C"
-            case 3:
-                let pressure = self.weatherResponses[indexPath.section].main?.pressure
-                cell.textLabel?.text = "Pressure :" + String(pressure!)
-            case 4:
-                let humidity = self.weatherResponses[indexPath.section].main?.humidity
-                cell.textLabel?.text = "Humidity :" + String(humidity!)
-            case 5:
-                let minTemp = self.weatherResponses[indexPath.section].main?.temp_min
-                cell.textLabel?.text = "Min Temperature :" + String(minTemp!)
-            case 6:
-                let maxTemp = self.weatherResponses[indexPath.section].main?.temp_max
-                cell.textLabel?.text = "Max Temperature :" + String(maxTemp!)
-            case 7:
-                let maxTemp = self.weatherResponses[indexPath.section].main?.temp_max
-                cell.textLabel?.text = "Wind Speed :" + String(maxTemp!)
-            case 8:
-                let sunrise = self.weatherResponses[indexPath.section].sys?.sunrise
-                let sunriseS = self.formatTimeStamp(stamp: sunrise!)
-                cell.textLabel?.text = "Sunrise :" + sunriseS
-            case 9:
-                let sunset = (self.weatherResponses[indexPath.section].sys?.sunset)!
-                let sunsetS = self.formatTimeStamp(stamp: sunset)
-                cell.textLabel?.text = "Sunset :" + sunsetS
-
-            default:
-                cell.textLabel?.text = "No Data"
-        }
-        }
-    return cell
+        return self.configureCell(cell: cell, indexPath: indexPath)
     }
     override func tableView(_: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat(heightForFooterSection)
@@ -92,6 +54,58 @@ class ViewController: UITableViewController {
         view.addSubview(label)
         view.backgroundColor = .systemGreen
         return view
+    }
+    func configureCell(cell: UITableViewCell, indexPath:IndexPath) -> UITableViewCell {
+        if self.weatherResponses.count > indexPath.section && self.weatherIcons.count > indexPath.section {
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherIconCell") as! WeatherIconCell
+                cell.weatherIconImageView.image = self.weatherIcons[indexPath.section]
+                return cell
+            case 1:
+                if let weather:[Weather] = self.weatherResponses[indexPath.section].weather {
+                    cell.textLabel?.text = "Main: " + weather[0].main!
+                }
+            case 2:
+                if let ktemp = (self.weatherResponses[indexPath.section].main?.temp){
+                    let celsiusTemp = ktemp - 273.15
+                    cell.textLabel?.text = "Temprature :" + String(format: "%.2f \u{00B0}C", celsiusTemp) //+ "C"
+                }
+            case 3:
+                if let pressure = self.weatherResponses[indexPath.section].main?.pressure {
+                    cell.textLabel?.text = "Pressure :" + String(pressure)
+                }
+            case 4:
+                if let humidity = self.weatherResponses[indexPath.section].main?.humidity {
+                    cell.textLabel?.text = "Humidity :" + String(humidity)
+                }
+            case 5:
+                if let minTemp = self.weatherResponses[indexPath.section].main?.temp_min {
+                    cell.textLabel?.text = "Min Temperature :" + String(minTemp)
+                }
+            case 6:
+                if let maxTemp = self.weatherResponses[indexPath.section].main?.temp_max {
+                    cell.textLabel?.text = "Max Temperature :" + String(maxTemp)
+                }
+            case 7:
+                if let maxTemp = self.weatherResponses[indexPath.section].main?.temp_max {
+                    cell.textLabel?.text = "Wind Speed :" + String(maxTemp)
+                }
+            case 8:
+                if let sunrise = self.weatherResponses[indexPath.section].sys?.sunrise {
+                let sunriseS = self.formatTimeStamp(stamp: sunrise)
+                cell.textLabel?.text = "Sunrise :" + sunriseS
+                }
+            case 9:
+                if let sunset = (self.weatherResponses[indexPath.section].sys?.sunset) {
+                let sunsetS = self.formatTimeStamp(stamp: sunset)
+                cell.textLabel?.text = "Sunset :" + sunsetS
+                }
+            default:
+                cell.textLabel?.text = "No Data"
+        }
+        }
+        return cell
     }
     func loadDefaultWeatherData(){
         for city in cities {
@@ -226,7 +240,6 @@ class WeatherViewModel {
     }
 }
 //END VIEW MODEL
-
 
 class Services: NSObject {
     static let baseURL = "http://api.openweathermap.org/data/2.5/weather?appid=b274c5ce65b3e435688f3098769c6dee&q="
