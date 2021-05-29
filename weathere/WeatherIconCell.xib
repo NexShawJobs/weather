@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="WeatherIconCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="108" id="hnc-wO-9vY" customClass="WeatherIconCell" customModule="weathere" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="168" height="108"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hnc-wO-9vY" id="kZT-tt-Nhb">
+                <rect key="frame" x="0.0" y="0.0" width="168" height="108"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GqH-Hi-32P">
+                        <rect key="frame" x="16" y="11" width="136" height="86"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GqH-Hi-32P" firstAttribute="centerY" secondItem="kZT-tt-Nhb" secondAttribute="centerY" id="K7A-hC-NMN"/>
+                    <constraint firstItem="GqH-Hi-32P" firstAttribute="leading" secondItem="kZT-tt-Nhb" secondAttribute="leadingMargin" id="TlH-Dn-tlu"/>
+                    <constraint firstItem="GqH-Hi-32P" firstAttribute="top" secondItem="kZT-tt-Nhb" secondAttribute="topMargin" id="ZtP-rG-48M"/>
+                    <constraint firstItem="GqH-Hi-32P" firstAttribute="centerX" secondItem="kZT-tt-Nhb" secondAttribute="centerX" id="pZS-CN-Spc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="weatherIconImageView" destination="GqH-Hi-32P" id="ahp-k6-NbC"/>
+            </connections>
+            <point key="canvasLocation" x="-26.086956521739133" y="143.97321428571428"/>
+        </tableViewCell>
+    </objects>
+</document>
