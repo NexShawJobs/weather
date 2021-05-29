@@ -224,6 +224,27 @@ struct Icon {
     let icon:UIImage
     let urlString:String
 }
+class Services: NSObject {
+    static let baseURL = "http://api.openweathermap.org/data/2.5/weather?appid=b274c5ce65b3e435688f3098769c6dee&q="
+    static let baseIconURL = "http://openweathermap.org/img/w/"
+
+    func fetchWeatherData(for strUrl:String, completion:@escaping (Data) -> ())  {
+        guard let url = URL(string: strUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            guard let data = data else {
+                return
+            }
+                completion(data)
+                return
+            }.resume()
+    }
+    func stringUrlForImage(forIconID iconID:String) -> String{
+        return Services.baseIconURL + iconID + ".png"
+    }
+    func stringUrlForWeatherData(forLocation location:String) -> String{
+        return Services.baseURL + location
+    }
+}
 //END MODEL
 
 //VIEW MODEL
@@ -248,25 +269,3 @@ class WeatherViewModel {
     }
 }
 //END VIEW MODEL
-
-class Services: NSObject {
-    static let baseURL = "http://api.openweathermap.org/data/2.5/weather?appid=b274c5ce65b3e435688f3098769c6dee&q="
-    static let baseIconURL = "http://openweathermap.org/img/w/"
-
-    func fetchWeatherData(for strUrl:String, completion:@escaping (Data) -> ())  {
-        guard let url = URL(string: strUrl) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            guard let data = data else {
-                return
-            }
-                completion(data)
-                return
-            }.resume()
-    }
-    func stringUrlForImage(forIconID iconID:String) -> String{
-        return Services.baseIconURL + iconID + ".png"
-    }
-    func stringUrlForWeatherData(forLocation location:String) -> String{
-        return Services.baseURL + location
-    }
-}
