@@ -117,7 +117,9 @@ class ViewController: UITableViewController {
         do {
             let response = try JSONDecoder().decode(WeatherResponse.self, from: self.weatherVModel.weatherData)
             self.weatherResponses.append(response)
-            self.getIconImage(for: response.weather![0].icon!)
+            if let weather = response.weather{
+                self.getIconImage(for: weather[0].icon!)
+            }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -128,7 +130,7 @@ class ViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
-            if self.weatherResponses.count > 0 && self.weatherResponses.count < self.cities.count {
+            if self.weatherResponses.count < self.cities.count {
                 self.cities.remove(at: self.weatherResponses.count)
                 self.tableView.reloadData()
             }
